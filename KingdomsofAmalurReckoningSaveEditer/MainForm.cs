@@ -84,7 +84,7 @@ namespace KingdomsofAmalurReckoningSaveEditer
                 }
                 catch
                 {
-                    MessageBox.Show("No Durability entered");
+                    MessageBox.Show("输入耐久度不合法");
                     return;
                 }
             }
@@ -96,7 +96,7 @@ namespace KingdomsofAmalurReckoningSaveEditer
                 }
                 catch
                 {
-                    MessageBox.Show("No Durability entered");
+                    MessageBox.Show("输入耐久度不合法");
                     return;
                 }
             }
@@ -145,7 +145,7 @@ namespace KingdomsofAmalurReckoningSaveEditer
             lvMain.Items.Clear();
             if (editer == null)
             {
-                MessageBox.Show("No save-file opened, click ok to open a save-file");
+                MessageBox.Show("还未打开存档文件,点击确定打开存档");
                 tsmiOpen.PerformClick();
             }
             else
@@ -155,7 +155,7 @@ namespace KingdomsofAmalurReckoningSaveEditer
                 weaponList = new List<WeaponMemoryInfo>();
                 foreach (WeaponMemoryInfo w in weaponTemp)
                 {
-                    if (w.WeaponName == "unknown")
+                    if (w.WeaponName == "未知")
                     {
                         weaponList.Add(w);
                     }
@@ -178,7 +178,6 @@ namespace KingdomsofAmalurReckoningSaveEditer
                 }
                 btnSearchByDur.Enabled = true;
                 btnSearchByName.Enabled = true;
-                tsmiBag.Visible = true;
                 btnPrint.Enabled = false;
                 btnEdit.Enabled = false;
                 btnDelete.Enabled = false;
@@ -193,7 +192,7 @@ namespace KingdomsofAmalurReckoningSaveEditer
             attributeList = new List<AttributeInfo>();
             try
             {
-                doc.Load(Application.StartupPath + @"\Data\properties.xml");
+                doc.Load(Application.StartupPath + @"\Data\属性列表.xml");
                 XmlNodeList nodes = doc.DocumentElement.ChildNodes;
                 foreach (XmlNode n in nodes)
                 {
@@ -205,7 +204,7 @@ namespace KingdomsofAmalurReckoningSaveEditer
             }
             catch
             {
-                MessageBox.Show("Failed to load property list, please check if \"data\" folder is present and xml-file is present");
+                MessageBox.Show("属性列表加载失败,请检查属性列表是否有效");
                 Application.Exit();
             }
         }
@@ -232,9 +231,9 @@ namespace KingdomsofAmalurReckoningSaveEditer
             {
                 File.Copy(opfMain.FileName, opfMain.FileName + ".bak", true);
                 editer.SaveFile(opfMain.FileName);
-                tslblEditState.Text = "Unmodified";
+                tslblEditState.Text = "未修改";
                 btnSave.Enabled = false;
-                MessageBox.Show("Save successful, original save under"+opfMain.FileName+".bak");
+                MessageBox.Show("保存成功,原存档已备份到"+opfMain.FileName+".bak");
             }
         }
 
@@ -243,15 +242,6 @@ namespace KingdomsofAmalurReckoningSaveEditer
             HelpForm form = new HelpForm();
             form.ShowDialog();
         }
-
-        private void tsmiBag_Click(object sender, EventArgs e)
-        {
-            BagEditForm form = new BagEditForm(editer);
-            if (form.ShowDialog() == DialogResult.Yes)
-            {
-                btnSave.Enabled = true;
-            }
-        } 
 
         private void btnEdit_Click(object sender, EventArgs e)
         {
@@ -269,7 +259,7 @@ namespace KingdomsofAmalurReckoningSaveEditer
 
         private void btnDelete_Click(object sender, EventArgs e)
         {
-            if (MessageBox.Show("Removing equipment forcefully may lead to bugs, removing worn-equipment will lead to an invalid save-file, if it is not absolutly necessary, do not use this feature, are you sure you want to delete you item?", "Message", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+            if (MessageBox.Show("强制删除装备可能会导致某些BUG,删除已穿在身上的装备必然导致存档无效，如非必要，请勿使用此功能，确定要删除么?", "提示信息", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
             {
                 WeaponMemoryInfo weaponInfo = (WeaponMemoryInfo)lvMain.SelectedItems[0].Tag;
                 editer.DeleteWeapon(weaponInfo);
@@ -288,7 +278,7 @@ namespace KingdomsofAmalurReckoningSaveEditer
             {
                 btnSearchByDur.PerformClick();
             }
-            tslblEditState.Text = "Modified";
+            tslblEditState.Text = "已修改";
             btnSave.Enabled = true;
         }
 
@@ -311,16 +301,6 @@ namespace KingdomsofAmalurReckoningSaveEditer
             {
                 btnSave.Enabled = true;
             }
-        }
-
-        private void tslblFileLocal_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void tslblEditState_Click(object sender, EventArgs e)
-        {
-
         }
     }
 }

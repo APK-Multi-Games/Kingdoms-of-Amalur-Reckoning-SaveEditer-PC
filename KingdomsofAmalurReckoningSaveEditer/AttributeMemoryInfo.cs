@@ -5,13 +5,13 @@ using System.Text;
 namespace KingdomsofAmalurReckoningSaveEditer
 {
     /// <summary>
-    /// Attribute Memory Information
+    /// 属性在文件中的信息
     /// </summary>
     public class AttributeMemoryInfo
     {
         private int[] value;
         /// <summary>
-        /// Attribute value
+        /// 属性在文件中的值
         /// </summary>
         public int[] Value
         {
@@ -21,7 +21,7 @@ namespace KingdomsofAmalurReckoningSaveEditer
 
         private String code;
         /// <summary>
-        /// Attribute Code
+        /// 属性代码
         /// </summary>
         public String Code
         {
@@ -31,7 +31,7 @@ namespace KingdomsofAmalurReckoningSaveEditer
 
         private string detail;
         /// <summary>
-        /// Attribute Description
+        /// 属性文字描述
         /// </summary>
         public string Detail
         {

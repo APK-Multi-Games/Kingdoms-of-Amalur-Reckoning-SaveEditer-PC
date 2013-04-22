@@ -5,13 +5,13 @@ using System.Text;
 namespace KingdomsofAmalurReckoningSaveEditer
 {
     /// <summary>
-    /// Equipment Memory Information
+    /// 装备在内存中的信息
     /// </summary>
     public class WeaponMemoryInfo
     {
         private int weaponIndex;
         /// <summary>
-        /// Equipment head Index(XX XX XX XX 0B 00 00 00 68 D5 24 00 03)
+        /// 装备头部所在索引(XX XX XX XX 0B 00 00 00 68 D5 24 00 03)
         /// </summary>
         public int WeaponIndex
         {
@@ -21,7 +21,7 @@ namespace KingdomsofAmalurReckoningSaveEditer
 
         private int nextWeaponIndex;
         /// <summary>
-        /// Next Equipment head Index
+        /// 下一个装备头部所在索引
         /// </summary>
         public int NextWeaponIndex
         {
@@ -30,7 +30,7 @@ namespace KingdomsofAmalurReckoningSaveEditer
         }
 
         /// <summary>
-        /// Equipment list of attributes of the head in the archive index (accounting for 4-byte, indicates that the equipment has a number of attributes)
+        /// 装备属性列表头部在存档中的索引(占4字节,指示该装备拥有属性数量)
         /// </summary>
         public int AttHeadIndex
         {
@@ -39,7 +39,7 @@ namespace KingdomsofAmalurReckoningSaveEditer
 
         private byte[] weaponBytes;
         /// <summary>
-        /// Equipment data
+        /// 装备数据
         /// </summary>
         public byte[] WeaponBytes
         {
@@ -48,7 +48,7 @@ namespace KingdomsofAmalurReckoningSaveEditer
         }
 
         /// <summary>
-        /// Equipment Name
+        /// 装备名称
         /// </summary>
         public String WeaponName
         {
@@ -56,7 +56,7 @@ namespace KingdomsofAmalurReckoningSaveEditer
             {
                 if (weaponBytes[AmalurSaveEditer.WeaponAttHeadOffSet + 22 + AttCount * 8] != 1)
                 {
-                    return "unkown";
+                    return "未知";
                 }
                 else
                 {
@@ -84,7 +84,7 @@ namespace KingdomsofAmalurReckoningSaveEditer
         }
 
         /// <summary>
-        /// Number of Attributes
+        /// 属性数量
         /// </summary>
         public int AttCount
         {
@@ -92,7 +92,7 @@ namespace KingdomsofAmalurReckoningSaveEditer
         }
 
         /// <summary>
-        /// Current Durability
+        /// 当前耐久度
         /// </summary>
         public float CurrentDurability
         {
@@ -107,7 +107,7 @@ namespace KingdomsofAmalurReckoningSaveEditer
         }
 
         /// <summary>
-        /// Maximum durability
+        /// 最大耐久度
         /// </summary>
         public float MaxDurability
         {
@@ -122,7 +122,7 @@ namespace KingdomsofAmalurReckoningSaveEditer
         }
 
         /// <summary>
-        /// list of attributes on equipment
+        /// 装备属性列表
         /// </summary>
         public List<AttributeMemoryInfo> WeaponAttList
         {

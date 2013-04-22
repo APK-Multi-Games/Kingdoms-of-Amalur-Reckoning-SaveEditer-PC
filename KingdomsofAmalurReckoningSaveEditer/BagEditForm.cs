@@ -33,11 +33,11 @@ namespace KingdomsofAmalurReckoningSaveEditer
                 count = int.Parse(txtBag.Text);
                 editer.EditMaxBagCount(count);
                 isEdit = true;
-                MessageBox.Show("Modification successful");
+                MessageBox.Show("修改成功");
             }
             else
             {
-                MessageBox.Show("Invalid Input, data will not be modifies");
+                MessageBox.Show("输入的数据无效,不予修改");
             }
         }
 
@@ -47,11 +47,6 @@ namespace KingdomsofAmalurReckoningSaveEditer
             {
                 this.DialogResult = DialogResult.Yes;
             }
-        }
-
-        private void label3_Click(object sender, EventArgs e)
-        {
-
         }
     }
 }

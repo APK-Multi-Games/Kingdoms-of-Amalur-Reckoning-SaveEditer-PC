@@ -118,20 +118,24 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="label1.Text" xml:space="preserve">
-    <value>1.DO NOT USE SPECIAL CHARAKTERS
-2.Click File - Open the save-file
-  SKIDROW version:
-  Win7/Vista: %USERPROFILE%\AppData\Local\SKIDROW\102500\Storage
-  XP: %USERPROFILE%(Username)\Local Settings\Application Data\SKIDROW\102500\Storage
-  THETA: My Documents\My Games\Reckoning
-3.Select the Item you want to modify in the Equipment-window
-4.Click the modify Button
-5.In the pop-up window modify your propertys
-6.Click Modify and close the Equipment-window
-7.Save the modified Item/items and overwrite the original save-file
+    <value>1.在游戏中锻造一件装备 取名勿用中文及特殊字符
+2.点击 文件-打开 选择游戏存档文件
+  SKIDROW版:
+  Win7/Vista系统：%USERPROFILE%\AppData\Local\SKIDROW\102500\Storage
+  XP系统：%USERPROFILE%(你的计算机用户名)\Local Settings\Application Data\SKIDROW\102500\Storage
+  THETA版:  我的文档\My Games\Reckoning
+3.在 查找 栏中输入你锻造的装备名称 即可在下边列表看到
+4.在列表中点击你锻造的装备名 然后点击下面的 修改
+5.在弹出的窗口修改装备属性
+6.关闭修改窗口 点击保存
+8.提示成功后 把存档放回原目录覆盖原始存档
 
-Note: Your Properties are not limited to the drop-down list, you can use Notepad to open the xml-file in the "data" folder
+注:可添加的属性并不局限于以上列表
+可用记事本打开 "Data"文件夹下的"属性列表.xml"
+自行参照论坛给出的属性列表添加
+即可为本程序添加该属性
 
-Item-ids can be found in the forunms around the web</value>
+请勿随意修改查找到的未知装备 修改前请做好存档备份
+</value>
   </data>
 </root>

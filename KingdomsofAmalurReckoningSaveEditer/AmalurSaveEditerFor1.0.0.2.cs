@@ -6,20 +6,20 @@ using ByteManager;
 namespace KingdomsofAmalurReckoningSaveEditer
 {
     /// <summary>
-    /// Archive Operation for Kingdosm of Amalur(supports 1.0.0.2)
+    /// 阿玛拉王国存档操作类(支持1.0.0.2)
     /// </summary>
     public class AmalurSaveEditer
     {
         /// <summary>
-        /// The head of the equipment, property and indicate the number of attributes of the data relative to equipment data head offset
+        /// 装备属性头部指示属性数量的数据相对装备数据头部的偏移量
         /// </summary>
         public static int WeaponAttHeadOffSet = 21;
         private ByteEditer br = null;
 
         /// <summary>
-        /// Read save-file
+        /// 读取存档
         /// </summary>
-        /// <param name="path">archive path</param>
+        /// <param name="path">存档路径</param>
         public void ReadFile(string path)
         {
             br = new ByteEditer();
@@ -30,19 +30,19 @@ namespace KingdomsofAmalurReckoningSaveEditer
             catch
             {
                 br = null;
-                throw new Exception("save-file failed to open");
+                throw new Exception("存档文件打开失败");
             }
         }
 
         /// <summary>
-        /// Save save-file
+        /// 保存存档
         /// </summary>
-        /// <param name="path">save path</param>
+        /// <param name="path">保存路径</param>
         public void SaveFile(string path)
         {
             if (br.BtList == null)
             {
-                throw new Exception("save-file not open");
+                throw new Exception("存档未打开");
             }
 
             try
@@ -51,7 +51,7 @@ namespace KingdomsofAmalurReckoningSaveEditer
             }
             catch
             {
-                throw new Exception("saving failed");
+                throw new Exception("存档文件保存失败");
             }
         }
 
@@ -63,7 +63,7 @@ namespace KingdomsofAmalurReckoningSaveEditer
         {
             if (br.BtList == null)
             {
-                throw new Exception("save-file not open");
+                throw new Exception("存档未打开");
             }
             int index = br.FindIndexByString("current_inventory_count")[0] + 35;
             byte[] bt = br.GetBytsByIndexAndLength(index, 4);
@@ -71,14 +71,14 @@ namespace KingdomsofAmalurReckoningSaveEditer
         }
 
         /// <summary>
-        /// Edit maximum Backpack capacity
+        /// 写入背包容量上限
         /// </summary>
         /// <param name="c"></param>
         public void EditMaxBagCount(int c)
         {
             if (br.BtList == null)
             {
-                throw new Exception("save-file not open");
+                throw new Exception("存档未打开");
             }
             int index = br.FindIndexByString("current_inventory_count")[0] + 35;
             byte[] bt = BitConverter.GetBytes(c);
@@ -86,16 +86,16 @@ namespace KingdomsofAmalurReckoningSaveEditer
         }
 
         /// <summary>
-        /// List of Attributes on Equipment(including descriptions)
+        /// 获取装备的属性列表(包含属性文字描述)
         /// </summary>
-        /// <param name="weaponInfo">Equipment Object</param>
-        /// <param name="attInfoList">Description of Properties</param>
-        /// <returns>List of Attributes</returns>
+        /// <param name="weaponInfo">装备对象</param>
+        /// <param name="attInfoList">属性描述类集合</param>
+        /// <returns>属性列表</returns>
         public List<AttributeMemoryInfo> getAttList(WeaponMemoryInfo weaponInfo, List<AttributeInfo> attInfoList)
         {
             if (br.BtList == null)
             {
-                throw new Exception("save-file not open");
+                throw new Exception("存档未打开");
             }
 
             List<AttributeMemoryInfo> attList = weaponInfo.WeaponAttList;
@@ -111,7 +111,7 @@ namespace KingdomsofAmalurReckoningSaveEditer
                 }
                 if (text == "")
                 {
-                    text = "Unknown";
+                    text = "未知";
                 }
                 attInfo.Detail = text;
             }
@@ -119,15 +119,15 @@ namespace KingdomsofAmalurReckoningSaveEditer
         }
 
         /// <summary>
-        /// Check if equipment is Equipable
+        /// 检查某装备对象是否是一件有效装备
         /// </summary>
-        /// <param name="weapon">Equipment Object</param>
+        /// <param name="weapon">装备对象</param>
         /// <returns></returns>
         public bool IsWeapon(WeaponMemoryInfo weapon)
         {
             if (br.BtList == null)
             {
-                throw new Exception("save-file not open");
+                throw new Exception("存档未打开");
             }
 
             byte[] bytes = new byte[9];
@@ -151,14 +151,14 @@ namespace KingdomsofAmalurReckoningSaveEditer
         }
 
         /// <summary>
-        /// Get all Equipment
+        /// 获取所有装备
         /// </summary>
         /// <returns></returns>
         public List<WeaponMemoryInfo> GetAllWeapon()
         {
             if (br.BtList == null)
             {
-                throw new Exception("save-file not open");
+                throw new Exception("存档未打开");
             }
 
             List<WeaponMemoryInfo> weaponList = new List<WeaponMemoryInfo>();
@@ -237,14 +237,14 @@ namespace KingdomsofAmalurReckoningSaveEditer
         }
 
         /// <summary>
-        /// Delete Equipment
+        /// 删除某件装备
         /// </summary>
         /// <param name="weapon"></param>
         public void DeleteWeapon(WeaponMemoryInfo weapon)
         {
             if (br.BtList == null)
             {
-                throw new Exception("save-file not open");
+                throw new Exception("存档未打开");
             }
 
             weapon.WeaponBytes = new byte[] {0,0,0,0 };
@@ -252,14 +252,14 @@ namespace KingdomsofAmalurReckoningSaveEditer
         }
 
         /// <summary>
-        /// Saveing Equipment
+        /// 将装备代码写入存档
         /// </summary>
-        /// <param name="weapon">Written Equipment</param>
+        /// <param name="weapon">要写入的装备</param>
         public void WriteWeaponByte(WeaponMemoryInfo weapon)
         {
             if (br.BtList == null)
             {
-                throw new Exception("save-file not open");
+                throw new Exception("存档未打开");
             }
 
             br.DeleteIntsByStartAndEnd(weapon.WeaponIndex, weapon.NextWeaponIndex - 1);

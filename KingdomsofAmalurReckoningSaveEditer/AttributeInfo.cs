@@ -5,13 +5,13 @@ using System.Text;
 namespace KingdomsofAmalurReckoningSaveEditer
 {
     /// <summary>
-    /// Attribute Information
+    /// 属性信息
     /// </summary>
     public class AttributeInfo
     {
         private String attributeId;
         /// <summary>
-        /// Attribute ID
+        /// 属性代码
         /// </summary>
         public String AttributeId
         {
@@ -20,7 +20,7 @@ namespace KingdomsofAmalurReckoningSaveEditer
         }
         private String attributeText;
         /// <summary>
-        /// Attribute Description
+        /// 属性描述
         /// </summary>
         public String AttributeText
         {

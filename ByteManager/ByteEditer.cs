@@ -6,19 +6,19 @@ using System.IO;
 namespace ByteManager
 {
     /// <summary>
-    /// File Operationing in binary mode
+    /// 以二进制方式操作某文件
     /// </summary>
     public class ByteEditer
     {
         byte[] btList;
         /// <summary>
-        /// Constructor parameters (need to call Open to open the file)
+        /// 无参化构造(需要调用Open打开文件)
         /// </summary>
         public ByteEditer()
         {
         }
         /// <summary>
-        /// Create a known instance of a byte array
+        /// 用已知的一个byte数组创建实例
         /// </summary>
         /// <param name="btList"></param>
         public ByteEditer(byte[] btList)
@@ -27,7 +27,7 @@ namespace ByteManager
         }
 
         /// <summary>
-        /// Binary array file
+        /// 文件的二进制数组形式
         /// </summary>
         public byte[] BtList
         {
@@ -35,9 +35,9 @@ namespace ByteManager
         }
 
         /// <summary>
-        /// Read file
+        /// 读取文件
         /// </summary>
-        /// <param name="path">Absolute file-path</param>
+        /// <param name="path">文件的绝对路径</param>
         public void ReadFile(String path)
         {
             FileStream fs = null;
@@ -49,7 +49,7 @@ namespace ByteManager
             }
             catch
             {
-                throw new Exception("File reading fails");
+                throw new Exception("读取文件失败");
             }
             finally
             {
@@ -61,14 +61,14 @@ namespace ByteManager
         }
 
         /// <summary>
-        /// Save file
+        /// 保存文件
         /// </summary>
-        /// <param name="path">Save the file's absolute path</param>
+        /// <param name="path">保存文件的绝对路径</param>
         public void SaveFile(String path)
         {
             if (btList == null)
             {
-                throw new Exception("File not open");
+                throw new Exception("文件未打开");
             }
             FileStream fs = null;
             try
@@ -78,7 +78,7 @@ namespace ByteManager
             }
             catch
             {
-                throw new Exception("Archive saving failed");
+                throw new Exception("存档保存失败");
             }
             finally
             {
@@ -90,23 +90,23 @@ namespace ByteManager
         }
 
         /// <summary>
-        /// Find the address where the first character in the file index (does not support Chinese, and special symbols may be more than one record)
+        /// 查找字符串第一个字符在文件中所在的地址索引(不支持中文和特殊符号 可能不止一条记录)
         /// </summary>
-        /// <param name="name">String name</param>
-        /// <returns>Strings where binary array start index</returns>
+        /// <param name="name">字符串名</param>
+        /// <returns>字符串所在二进制数组起始索引</returns>
         public List<int> FindIndexByString(String name)
         {
             if (btList == null)
             {
-                throw new Exception("File not open");
+                throw new Exception("文件未打开");
             }
             if (name=="")
             {
-                throw new Exception("Empty string is not allowed");
+                throw new Exception("不允许查找空字符串");
             }
             if (btList.Length < name.Length)
             {
-                throw new Exception("File is too short");
+                throw new Exception("文件过短");
             }
             
             List<int> indexList = new List<int>();
@@ -136,23 +136,23 @@ namespace ByteManager
         }
 
         /// <summary>
-        /// Find the address where the index by an array of byte in the file (possibly more than one record)
+        /// 查找byte数组在文件中所在的地址索引(可能不止一条记录)
         /// </summary>
-        /// <param name="bt">To find an array of byte</param>
-        /// <returns>byte array where the position index list</returns>
+        /// <param name="bt">要查找的byte数组</param>
+        /// <returns>byte数组所在位置索引列表</returns>
         public List<int> FindIndexList(byte[] bt)
         {
             if (btList == null)
             {
-                throw new Exception("The file is not open");
+                throw new Exception("文件未打开");
             }
             if (bt ==null || bt.Length==0)
             {
-                throw new Exception("Find an empty array is not allowed");
+                throw new Exception("不允许查找空数组");
             }
             if (btList.Length < bt.Length)
             {
-                throw new Exception("File is too short");
+                throw new Exception("文件过短");
             }
 
             List<int> indexList = new List<int>();
